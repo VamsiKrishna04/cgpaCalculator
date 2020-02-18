@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2017 by mzohaibqc (http://jsbin.com/hoyetu/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+
+<html>
+
+<head>
+    <meta name="robots" content="noindex">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        ONLINE CGPA CALCULATOR
+    </title>
+    <link rel="icon" type="image/png" href="http://reachyourgoal18.uphero.com/2.png">
+    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <meta charset="utf-8">
+    <title>CGPA CALCULATOR</title>
+    <style id="jsbin-css">
+        table>tr>td {
+            width: 60px;
+        }
+
+        table>tr>td input {
+            width: 40px;
+        }
+    </style>
+    <style>
+        header,
+        footer {
+            padding: 1em;
+            color: white;
+            background-color: black;
+            clear: left;
+            text-align: center;
+        }
+
+        a:link {
+            color: green;
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: blue;
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: red;
+            background-color: transparent;
+            text-decoration: underline;
+        }
+
+        a:active {
+            color: yellow;
+            background-color: transparent;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body bgcolor="MistyRose">
+    <h1 align="center" style="color:blue;">CGPA CALCULATOR</h1>
+    <hr color="orange" size="3">
+    <a href="#ME" title="TO KNOW ABOUT ME">ABOUT ME </a>&nbsp;&nbsp;
+    <a href="#CONTACT" title="TO CONTACT ME">CONTACT ME</a>&nbsp;&nbsp;
+    <a href="https://plus.google.com/+BommisettyVamsikrishna" title="TO JOIN ME ON GOOGLE" target="_blank">GOOGLE+</a>&nbsp;&nbsp;
+    <a href="https://www.facebook.com/bommisetty.vamsikrishna" title="TO JOIN ME ON FACEBOOK" target="_blank">FACEBOOK</a>
+    <BR>
+    <hr color="green" size="3">
+
+
+    <b>Enter your name:</b>
+    <input type="text" name="nam" id="usr_name" required="required" maxlength="15" autofocus><br><br>
+
+    <b>Enter Number Of Subjects:</b>
+    <input type="number" min="2" max="10" id="table-row-num" name="u_ip" required="required">
+    <button><b>Submit</b></button><br><br>
+
+    <center>
+        <h3>Enter The Grades And Credits In The Below Table</h3>
+    </center>
+
+    <center><b>SUBJECT&nbsp;&nbsp;&nbsp;&nbsp;GRADE &nbsp;&nbsp; CREDITS</b></center>
+    <Form Name="GPACalcForm" autocomplete="on">
+        <div id="table-gen">
+            <table id="dataTable" border="5" align="center" cellspacing="3" cellpadding="10" bgcolor="red">
+                <tr>
+                    <td bgcolor="blue">SUBJECT 1</td>
+                    <td bgcolor="pink">
+                        <INPUT TYPE="TEXT" SIZE="5" NAME="GR0" ALIGN="TOP" MAXLENGTH="1">
+                    </td>
+                    <td bgcolor="orange">
+                        <INPUT TYPE="TEXT" SIZE="5" NAME="CR0" ALIGN="TOP" MAXLENGTH="2">
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="blue">SUBJECT 2</td>
+                    <td bgcolor="pink">
+                        <INPUT TYPE="TEXT" SIZE="5" NAME="GR1" ALIGN="TOP" MAXLENGTH="1">
+                    </td>
+                    <td bgcolor="orange">
+                        <INPUT TYPE="TEXT" SIZE="5" NAME="CR1" ALIGN="TOP" MAXLENGTH="2">
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="blue">SUBJECT 3</td>
+                    <td bgcolor="pink">
+                        <INPUT TYPE="TEXT" SIZE="5" NAME="GR2" ALIGN="TOP" MAXLENGTH="1">
+                    </td>
+                    <td bgcolor="orange">
+                        <INPUT TYPE="TEXT" SIZE="5" NAME="CR2" ALIGN="TOP" MAXLENGTH="2">
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <center><b>CALCULATE CGPA: <INPUT style ="font-weight:bold;" TYPE="BUTTON" VALUE="Calculate" NAME="CalcButton" OnClick="gpacalc()"> &nbsp;&nbsp;
+            <input style ="font-weight:bold;" type="reset" value="CLEAR" name="reset" id="reset" value="CLEAR"></b></center><br><br>
+
+    </Form>
+    </div>
+    <script id="javascript">
+        $('button').on('click', generate);
+        var rows = 0;
+
+        function generate(e) {
+            rows = $('#table-row-num').val();
+            var html = '';
+            for (var i = 0; i < rows; i++) {
+                html += '<tr>' +
+                    '<td bgcolor="blue">SUBJECT ' + (i + 1) + '</td>' +
+                    '<td bgcolor="pink"><INPUT TYPE="TEXT" SIZE="5" NAME="GR' + (i) + '"' + 'ALIGN="TOP" MAXLENGTH="1"></td>' +
+                    '<td bgcolor="orange"><INPUT TYPE="TEXT" SIZE="5" NAME="CR' + (i) + '"' + 'ALIGN="TOP" MAXLENGTH="2"></td>' +
+                    '</tr>';
+            }
+
+            $('table').html(html);
+        }
+
+        function gpacalc() {
+
+            //define valid grades and their values
+            var gr = new Array(8);
+            var grv = new Array(8);
+            var ingr = new Array(rows);
+            var incr = new Array(rows);
+
+            // define valid grades and their values
+            var grcount = 16;
+            gr[0] = "O";
+            grv[0] = 10;
+            gr[1] = "X";
+            grv[1] = 9;
+            gr[2] = "A";
+            grv[2] = 8;
+            gr[3] = "B";
+            grv[3] = 7;
+            gr[4] = "C";
+            grv[4] = 6;
+            gr[5] = "D";
+            grv[5] = 5;
+            gr[6] = "E";
+            grv[6] = 4;
+            gr[7] = "F";
+            grv[7] = 0;
+
+            gr[8] = "o";
+            grv[8] = 10;
+            gr[9] = "x";
+            grv[9] = 9;
+            gr[10] = "a";
+            grv[10] = 8;
+            gr[11] = "b";
+            grv[11] = 7;
+            gr[12] = "c";
+            grv[12] = 6;
+            gr[13] = "d";
+            grv[13] = 5;
+            gr[14] = "e";
+            grv[14] = 4;
+            gr[15] = "f";
+            grv[15] = 0;
+
+
+            var name = document.getElementById("usr_name").value;
+            var tbl = document.getElementById("dataTable");
+            var rCount = tbl.rows.length;
+
+
+            // retrieve user input
+
+            for (i = 0; i < rCount; i++) {
+                ingr[i] = tbl.rows[i].cells[1].getElementsByTagName("input")[0].value;
+                incr[i] = tbl.rows[i].cells[2].getElementsByTagName("input")[0].value;
+            }
+
+            // Calculate GPA
+            var allgr = 0;
+            var allcr = 0;
+            var gpa = 0;
+            for (var x = 0; x < rCount; x++) {
+                if (ingr[x] == "") break;
+
+                var validgrcheck = 0;
+                for (var xx = 0; xx < grcount; xx++) {
+                    if (ingr[x] == gr[xx]) {
+                        allgr = allgr + (parseInt(incr[x], 10) * grv[xx]);
+                        allcr = allcr + parseInt(incr[x], 10);
+                        validgrcheck = 1;
+                        break;
+                    }
+                }
+                if (validgrcheck == 0) {
+                    alert("Error- Could not recognize the grade entered for SUBJECT " + eval(x + 1) + ". Please use standard college grades in the form of O X A B C ...F.");
+                    return 0;
+                }
+            }
+
+            // this if-check prevents a divide by zero error
+            if (allcr == 0) {
+                alert("Error- You did not enter any credit values! GPA = N/A");
+                return 0;
+            }
+
+            gpa = allgr / allcr;
+
+            if (eval(gpa) == 10.0) {
+                alert("YOUR GPA IS=  " + eval(gpa) + "\n Congrats " + name + " you scored Outstanding");
+            } else if (eval(gpa) >= 9.0 && eval(gpa) < 10) {
+                alert("YOUR GPA IS=  " + eval(gpa) + "\n Congrats " + name + " you scored Excellent");
+            } else if (eval(gpa) >= 8.0 && eval(gpa) < 9.0) {
+                alert("YOUR GPA IS=  " + eval(gpa) + "\n Congrats " + name + " you scored Very Good ");
+            } else if (eval(gpa) >= 7.0 && eval(gpa) < 8.0) {
+                alert("YOUR GPA IS=  " + eval(gpa) + "\n Congrats " + name + " you scored Good");
+            } else if (eval(gpa) >= 6.0 && eval(gpa) < 7.0) {
+                alert("YOUR GPA IS=  " + eval(gpa) + "\n Congrats " + name + " you scored Above Average");
+            } else {
+                alert("Congrats " + name + "\n YOUR GPA IS=  " + eval(gpa))
+            }
+
+            return 0;
+
+        }
+    </script> <br>
+    <b><u><a name="ME">ABOUT&nbsp; ME:</a></b></u><br><br>
+    <b>THIS &nbsp; IS &nbsp; B.VAMSI KRISHNA &nbsp;STUDENT &nbsp;OF  4<sup>th</sup> YEAR &nbsp; C.S.E &nbsp;AT &nbsp;K.L.E.F(KONERU LAKSHMAIAH EDUCATION FOUNDATION)</b><br><br>
+    <b><u><a name="CONTACT">CONTACT &nbsp; ME:</a></u></b><br>
+    <h3><b>MY EMAIL ID'S:<b></h3>
+<ol>
+<li>GMAIL ID:bommisettyvamsikrishna04@gmail.com</li><br>
+<li>YAHOO ID:bommisettyvamsikrishna@rocketmail.com</li>
+</ol>
+<h3>ALSO SEE <a href="http://interview18.uphero.com/" target="_blank" title="Useful Material For Interview Preparation">A SMALL GUIDE FOR INTERVIEW PREPARATION</a></h3>
+<script src="./IMPORTANT LINKS FROM KLUSN_files/jquery.min.js.download"></script>
+<script type="text/javascript" src="./IMPORTANT LINKS FROM KLUSN_files/arrow70.js.download"></script>
+<noscript>Not seeing a &lt;a href="http://www.scrolltotop.com/"&gt;Scroll to Top Button&lt;/a&gt;? Go to our FAQ page for more info.</noscript>
+<div align=center><a href='https://www.counter12.com'><img src='https://www.counter12.com/img-zcCbd3y4c2y1B2bY-92.gif' border='0' alt='conter12'></a><script type='text/javascript' src='https://www.counter12.com/ad.js?id=zcCbd3y4c2y1B2bY'></script></div>
+<footer>Copyright © B.VAMSI KRISHNA(14003434)</footer>
+</div>
+</body>
+</html>
